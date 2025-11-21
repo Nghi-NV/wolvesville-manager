@@ -1,4 +1,4 @@
-# Werewolf Game Manager (Quản Trò Ma Sói)
+# Werewolf Game Manager
 
 A comprehensive web application designed to assist Game Masters (GMs) in managing Werewolf (Ma Sói) game sessions. Built with Next.js, Tailwind CSS, and Zustand.
 
