@@ -24,8 +24,7 @@ export default function GameHistory() {
 
   const formatDuration = (start: number, end?: number) => {
     if (!end) return 'Không rõ';
-    const durationMs = end - start;
-    const minutes = Math.floor(durationMs / 60000);
+    const minutes = Math.floor((end - start) / 60000);
     return `${minutes} phút`;
   };
 
@@ -43,24 +42,17 @@ export default function GameHistory() {
   return (
     <div className="space-y-4">
       {gameHistory.map((game) => (
-        <div
-          key={game.id}
-          className="bg-white dark:bg-zinc-900 rounded-xl border border-zinc-200 dark:border-zinc-800 overflow-hidden"
-        >
-          <div
-            className="p-4 flex items-center justify-between cursor-pointer hover:bg-zinc-50 dark:hover:bg-zinc-800/50 transition-colors"
-            onClick={() => toggleExpand(game.id)}
-          >
+        <div key={game.id} className="bg-white dark:bg-zinc-900 rounded-xl border border-zinc-200 dark:border-zinc-800 overflow-hidden">
+          <div className="p-4 flex items-center justify-between cursor-pointer hover:bg-zinc-50 dark:hover:bg-zinc-800/50 transition-colors" onClick={() => toggleExpand(game.id)}>
             <div className="flex items-center gap-4">
               <div className={`w-12 h-12 rounded-full flex items-center justify-center ${game.winner === 'VILLAGERS'
                 ? 'bg-green-100 text-green-600 dark:bg-green-900/30 dark:text-green-400'
                 : game.winner === 'WEREWOLVES'
                   ? 'bg-red-100 text-red-600 dark:bg-red-900/30 dark:text-red-400'
-                  : 'bg-zinc-100 text-zinc-600 dark:bg-zinc-800 dark:text-zinc-400'
-                }`}>
+                  : 'bg-zinc-100 text-zinc-600 dark:bg-zinc-800 dark:text-zinc-400'}`}
+              >
                 {game.winner === 'VILLAGERS' ? <Trophy size={20} /> : game.winner === 'WEREWOLVES' ? <Skull size={20} /> : <Users size={20} />}
               </div>
-
               <div>
                 <div className="font-bold text-zinc-900 dark:text-zinc-100">
                   {game.winner === 'VILLAGERS' ? 'Dân Làng Thắng' : game.winner === 'WEREWOLVES' ? 'Ma Sói Thắng' : 'Hòa / Khác'}
@@ -72,22 +64,22 @@ export default function GameHistory() {
                 </div>
               </div>
             </div>
-
-            <div className="text-zinc-400">
-              {expandedGameId === game.id ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
-            </div>
+            <div className="text-zinc-400">{expandedGameId === game.id ? <ChevronUp size={20} /> : <ChevronDown size={20} />}</div>
           </div>
-
           {expandedGameId === game.id && (
             <div className="p-4 border-t border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/50">
               <h4 className="text-sm font-semibold text-zinc-500 dark:text-zinc-400 mb-3 uppercase tracking-wider">Vai Trò Người Chơi</h4>
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
                 {game.players.map((p) => (
                   <div key={p.id} className="flex items-center gap-2 p-2 rounded bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700">
-                    <img src={p.role.image} alt={p.role.name} className="w-6 h-6 rounded-full object-cover" />
+                    {p.role && <img src={p.role.image} alt={p.role.name} className="w-6 h-6 rounded-full object-cover" />}
                     <div className="min-w-0">
                       <div className="text-sm font-medium text-zinc-900 dark:text-zinc-100 truncate">{p.name}</div>
-                      <div className="text-xs text-zinc-500 dark:text-zinc-400 truncate">{p.role.name}</div>
+                      {p.role ? (
+                        <div className="text-xs text-zinc-500 dark:text-zinc-400 truncate">{p.role.name}</div>
+                      ) : (
+                        <div className="text-xs text-zinc-500 dark:text-zinc-400 truncate">Chưa có vai trò</div>
+                      )}
                     </div>
                   </div>
                 ))}

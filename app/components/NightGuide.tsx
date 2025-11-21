@@ -22,7 +22,7 @@ export default function NightGuide() {
 
   // Filter roles that are actually in the game
   const activeSteps = NIGHT_ORDER.filter((step) =>
-    currentSession.players.some((p) => p.role.id === step.role && p.isAlive)
+    currentSession.players.some((p) => p.role?.id === step.role && p.isAlive)
   );
 
   return (
