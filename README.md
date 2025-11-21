@@ -1,36 +1,76 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Werewolf Game Manager (Quản Trò Ma Sói)
+
+A comprehensive web application designed to assist Game Masters (GMs) in managing Werewolf (Ma Sói) game sessions. Built with Next.js, Tailwind CSS, and Zustand.
+
+## Features
+
+### 🎮 Game Setup
+- **Flexible Player Management**: Add, remove, and manage players with names and optional avatars.
+- **Role Selection**: Choose from a variety of roles including Villager, Werewolf, Seer, Bodyguard, Cupid, Witch, Hunter, and more.
+- **Customizable Role Pool**: Manually select roles for the game session.
+
+### 🌙 Game Session Management
+- **Manual Role Assignment**: The GM manually assigns roles to players during the first night, ensuring a smooth setup.
+- **Night Action Tracking**:
+  - **Status Effects**: Track status effects like Protected (🛡️), Linked (❤️), Poisoned (☠️), Silenced (👁️), and Targeted (⚡).
+  - **Logic Enforcement**: Automatically enforces game rules (e.g., Bodyguard protects only 1 person, Cupid links only 2 people).
+  - **Kill/Revive**: Easily mark players as dead or revive them.
+- **Day/Night Cycle**: Seamlessly switch between Day and Night phases with round tracking.
+- **Alive/Dead Filtering**: Automatically filter the player list to show "Alive" or "Dead" players, preventing clutter.
+
+### 🛠️ GM Tools
+- **Search**: Quickly find players by name.
+- **Role Details**: View detailed descriptions of each role.
+- **End Game**: Easily end the game and record the winning team (Villagers, Werewolves, or Third Party).
+
+## Tech Stack
+
+- **Framework**: [Next.js 15](https://nextjs.org/) (App Router)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+- **State Management**: [Zustand](https://github.com/pmndrs/zustand)
+- **Icons**: [Lucide React](https://lucide.dev/)
+- **Language**: TypeScript
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- Node.js 18+
+- pnpm (recommended) or npm/yarn
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Installation
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/Nghi-NV/wolvesville-manager.git
+   cd wolvesville-manager
+   ```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+2. Install dependencies:
+   ```bash
+   pnpm install
+   ```
 
-## Learn More
+3. Run the development server:
+   ```bash
+   pnpm dev
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+4. Open [http://localhost:3000](http://localhost:3000) with your browser.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Deployment
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+This project is configured for static export and can be easily deployed to GitHub Pages.
 
-## Deploy on Vercel
+### GitHub Pages
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The project includes a GitHub Action workflow (`.github/workflows/deploy.yml`) that automatically builds and deploys the application to GitHub Pages on every push to the `main` branch.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+To enable this:
+1. Go to your repository **Settings**.
+2. Navigate to **Pages**.
+3. Under **Build and deployment**, select **GitHub Actions** as the source.
+
+## License
+
+This project is licensed under the MIT License.
